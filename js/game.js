@@ -51,30 +51,30 @@ var mapX2 = gameWidth;	// --//-- motion stage right
 /////////////////////////////////////////////////////////////////////////
 //My stages, all 7
 var stagesSprite = new Image();
-stagesSprite.src = "../img/sprite_stages.png";
+stagesSprite.src = "/img/sprite_stages.png";
 
 var arrMapSpriteX = [0, 1200, 0, 1200, 0, 1200, 0, 1200, 0, 1200, 0, 1200, 0, 1200,];
 var arrMapSpriteY = [0, 0, 650, 650, 1300, 1300, 1950, 1950, 2600, 2600, 3250, 3250, 3900, 3900];
 /////////////////////////////////////////////////////////////////////////
 //My round, all 7, use sprite
 var roundSprite = new Image();
-roundSprite.src = "../img/sprite_round.png";
+roundSprite.src = "/img/sprite_round.png";
 
 var argRoundSpriteY = [0, 0, 91, 91, 182, 182, 273];
 var argRoundSpriteX = [0, 435, 0, 435, 0, 435, 0];
 /////////////////////////////////////////////////////////////////////////
 //Sound's for my round's
-var snd1 = new Audio("../sound/round_1.mp3");
-var snd2 = new Audio("../sound/round_2.mp3");
-var snd3 = new Audio("../sound/round_3.mp3");
-var snd4 = new Audio("../sound/round_4.mp3");
-var snd5 = new Audio("../sound/round_5.mp3");
-var snd6 = new Audio("../sound/round_6.mp3");
-var snd7 = new Audio("../sound/round_7.mp3");
+var snd1 = new Audio("/sound/round_1.mp3");
+var snd2 = new Audio("/sound/round_2.mp3");
+var snd3 = new Audio("/sound/round_3.mp3");
+var snd4 = new Audio("/sound/round_4.mp3");
+var snd5 = new Audio("/sound/round_5.mp3");
+var snd6 = new Audio("/sound/round_6.mp3");
+var snd7 = new Audio("/sound/round_7.mp3");
 var argSounds = [snd1, snd2, snd3, snd4, snd5, snd6, snd7];
 /////////////////////////////////////////////////////////////////////////
 var myPlayer = new Image();
-myPlayer.src = "../img/sprite_player_and_enemies.png";
+myPlayer.src = "/img/sprite_player_and_enemies.png";
 
 var argPlayerX = [0, 142, 287, 432];
 var argPlayerY = [49, 0, 49, 23];
@@ -83,7 +83,7 @@ var argPlayerHeight = [56, 105, 87, 82];
 /////////////////////////////////////////////////////////////////////////
 //for creating enemies
 var myEnemy = new Image();
-myEnemy.src = "../img/sprite_player_and_enemies.png";
+myEnemy.src = "/img/sprite_player_and_enemies.png";
 
 var argEnemyX = [0, 62.5, 156, 243, 295, 380, 500];
 var argEnemyY = [135, 135, 135, 135, 135, 135, 135];
@@ -97,7 +97,7 @@ var spawnTime = 5000;	//freak drawing
 var spawnAmount = -1;	//count enemy
 /////////////////////////////////////////////////////////////////////////
 var health = new Image();
-health.src = "../img/sprite_dragon_health.png";
+health.src = "/img/sprite_dragon_health.png";
 
 var argHealthX = [0, 0, 0, 0, 0, 0];
 var argHelathY = [0, 22, 45, 69, 92, 115];
@@ -106,10 +106,10 @@ var argHealthHeight = [22, 23, 24, 23, 23, 23];
 
 var totalHealth = 100;
 
-var dragonCry = new Audio("../sound/dragon_cry.wav");
+var dragonCry = new Audio("/sound/dragon_cry.wav");
 /////////////////////////////////////////////////////////////////////////
 var backFon = new Image();
-backFon.src = "../img/sprite_back_fon.png";
+backFon.src = "/img/sprite_back_fon.png";
 
 var argBackFonX = [0, 0, 0, 0, 0, 0, 0, 0];
 var argBackFonY = [0, 650, 1320, 1974, 2622, 3273, 3923, 4573];
@@ -117,24 +117,24 @@ var argBackFonWidth = [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200];
 var argBackFonHeight = [650, 650, 650, 650, 650, 650, 650, 650];
 /////////////////////////////////////////////////////////////////////////
 var nodeBackFon = new Image();
-nodeBackFon.src = "../img/sprite_node_back_fon.png";
+nodeBackFon.src = "/img/sprite_node_back_fon.png";
 
-var timer = new Audio("../sound/timer.wav");
+var timer = new Audio("/sound/timer.wav");
 
 var argNodeBackFonX = [0, 195, 0, 82, 153, 229, 317, 0, 0, 0, 0];
 var argNodeBackFonY = [0, 0, 72, 72, 72, 72, 72, 174, 251, 326, 398];
 var argNodeBackFonWidth = [195, 430, 73, 82, 74.5, 88.5, 77.5, 316, 286, 414, 974];
 var argNodeBackFonHeight = [72, 72, 103, 103, 103, 103, 103, 77, 74, 72, 72];
 /////////////////////////////////////////////////////////////////////////
-var lose = new Audio("../sound/lose.mp3");
-var upRound = new Audio("../sound/up_round.mp3");
-var win = new Audio("../sound/win.mp3");
+var lose = new Audio("/sound/lose.mp3");
+var upRound = new Audio("/sound/up_round.mp3");
+var win = new Audio("/sound/win.mp3");
 /////////////////////////////////////////////////////////////////////////
 var buttom = new Image();
-buttom.src = "../img/sprite_buttom.png";
+buttom.src = "/img/sprite_buttom.png";
 
-var hoverButtom = new  Audio("../sound/hover.wav");
-var clickButtom = new  Audio("../sound/click.wav");
+var hoverButtom = new  Audio("/sound/hover.wav");
+var clickButtom = new  Audio("/sound/click.wav");
 
 var argButtomX = [7, 7, 7, 305, 305, 305, 612, 612, 612];
 var argButtomY = [6.5, 66.5, 128, 6.5, 66.5, 128, 6.5, 66.5, 128];
@@ -275,7 +275,7 @@ var requestAnimFrame = window.requestAnimationFrame ||
 						window.msRequestAnimationFrame;
 /////////////////////////////////////////////////////////////////////////
 var startMenu = new Image();
-startMenu.src = "../img/start_game.jpg";
+startMenu.src = "/img/start_game.jpg";
 
 
 
