@@ -1,0 +1,421 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 5, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 8, ../sass/screen.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 11, ../sass/screen.scss */
+html, body {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  font-weight: 400;
+  font-size: 16px;
+  background-image: url("../img/back_fon.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* line 23, ../sass/screen.scss */
+.fon_site {
+  width: 100%;
+  max-width: 1645px;
+  margin: 0 auto;
+  height: 925px;
+  background-image: url("../img/background_both_fon.jpg");
+  background-size: contain;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.8);
+}
+/* line 31, ../sass/screen.scss */
+.fon_site header {
+  width: 100%;
+  max-width: 1645px;
+  height: 70px;
+  background-color: #ff9640;
+  position: fixed;
+  z-index: 100;
+  border-radius: 0px 0px 70px 70px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.8);
+  padding: 0 70px;
+  border: 3px solid #fff;
+}
+/* line 42, ../sass/screen.scss */
+.fon_site header nav {
+  width: 40%;
+  height: inherit;
+  float: left;
+}
+/* line 46, ../sass/screen.scss */
+.fon_site header nav ul {
+  padding: 15px 0;
+}
+/* line 48, ../sass/screen.scss */
+.fon_site header nav ul li {
+  list-style: none;
+  float: left;
+  font-size: 2em;
+  margin-right: 30px;
+  font-family: 'Palanquin Dark', sans-serif;
+  font-weight: 500;
+}
+/* line 55, ../sass/screen.scss */
+.fon_site header nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+}
+/* line 59, ../sass/screen.scss */
+.fon_site header nav ul li a:hover {
+  color: #DE0052;
+  transition: all 0.7s ease;
+}
+/* line 63, ../sass/screen.scss */
+.fon_site header nav ul li a:not(:hover) {
+  color: #fff;
+  transition: all 1.2s ease;
+}
+/* line 71, ../sass/screen.scss */
+.fon_site header figure {
+  width: 25%;
+  height: inherit;
+  float: left;
+  text-align: center;
+}
+/* line 76, ../sass/screen.scss */
+.fon_site header figure img {
+  width: auto;
+  height: 64px;
+}
+/* line 81, ../sass/screen.scss */
+.fon_site header aside {
+  width: 35%;
+  height: inherit;
+  float: right;
+  padding: 15px 0;
+}
+/* line 86, ../sass/screen.scss */
+.fon_site header aside i {
+  float: right;
+  font-size: 2.2em;
+  margin-right: 40px;
+  color: #fff;
+}
+/* line 91, ../sass/screen.scss */
+.fon_site header aside i:hover {
+  color: #DE0052;
+  transition: all 0.7s ease;
+  cursor: pointer;
+}
+/* line 96, ../sass/screen.scss */
+.fon_site header aside i:not(:hover) {
+  color: #fff;
+  transition: all 1.2s ease;
+}
+/* line 103, ../sass/screen.scss */
+.fon_site .content_for_game {
+  width: 78%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+}
+/* line 108, ../sass/screen.scss */
+.fon_site .content_for_game figure {
+  width: 100%;
+  padding-top: 110px;
+  padding-bottom: 40px;
+  color: #ff9640;
+  font-size: 3.5em;
+  font-family: 'Macondo', cursive;
+  text-align: center;
+  text-shadow: 1px 5px 5px black;
+}
+/* line 118, ../sass/screen.scss */
+.fon_site .content_for_game #map_game {
+  display: block;
+  margin: 0 auto;
+}
+/* line 122, ../sass/screen.scss */
+.fon_site .content_for_game #nomber_round, .fon_site .content_for_game #player, .fon_site .content_for_game #enemy, .fon_site .content_for_game #health, .fon_site .content_for_game #back_fon, .fon_site .content_for_game #node_back_fon, .fon_site .content_for_game #start, .fon_site .content_for_game #for_start {
+  display: block;
+  margin: -650px auto 0px;
+}
+
+/* line 128, ../sass/screen.scss */
+.specification_game {
+  width: 100%;
+  max-width: 1645px;
+  margin: 0 auto;
+  height: 1350px;
+  background-image: url("../img/about_game.jpg");
+  background-size: cover;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.8);
+}
+/* line 136, ../sass/screen.scss */
+.specification_game .block_spec {
+  position: relative;
+  background: #88b7d5;
+  border: 4px solid #c2e1f5;
+  font-family: 'Timmana', sans-serif;
+  font-weight: 500;
+  font-size: 2.5em;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 10px;
+  padding: 20px 0 10px 0;
+  border-radius: 0 0 50px 50px;
+}
+/* line 148, ../sass/screen.scss */
+.specification_game .block_spec:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: #88b7d5;
+  border-width: 30px;
+  margin-left: -30px;
+}
+/* line 163, ../sass/screen.scss */
+.specification_game .block_spec:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(194, 225, 245, 0);
+  border-top-color: #c2e1f5;
+  border-width: 36px;
+  margin-left: -36px;
+}
+/* line 179, ../sass/screen.scss */
+.specification_game .keys {
+  width: 100%;
+  height: 315px;
+}
+/* line 182, ../sass/screen.scss */
+.specification_game .keys .side_left {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+/* line 186, ../sass/screen.scss */
+.specification_game .keys .side_left .block1 {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+/* line 190, ../sass/screen.scss */
+.specification_game .keys .side_left .block1 img {
+  margin: 50px;
+}
+/* line 194, ../sass/screen.scss */
+.specification_game .keys .side_left .block2 {
+  width: 50%;
+  height: 100%;
+  float: right;
+  padding-top: 50px;
+  text-align: right;
+}
+/* line 200, ../sass/screen.scss */
+.specification_game .keys .side_left .block2 span {
+  padding-right: 100px;
+  color: #fff;
+  font-size: 3.5em;
+  margin-bottom: 50px;
+}
+/* line 206, ../sass/screen.scss */
+.specification_game .keys .side_left .block2 p {
+  color: #fff;
+  text-align: left;
+  font-size: 2em;
+  line-height: 1.5;
+}
+/* line 214, ../sass/screen.scss */
+.specification_game .keys .side_right {
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+/* line 220, ../sass/screen.scss */
+.specification_game .description_game {
+  width: 100%;
+  height: 300px;
+  text-align: right;
+  padding-top: 50px;
+}
+/* line 225, ../sass/screen.scss */
+.specification_game .description_game span {
+  padding-right: 160px;
+  color: #ff9640;
+  font-size: 3.5em;
+  font-family: 'Macondo', cursive;
+}
+/* line 231, ../sass/screen.scss */
+.specification_game .description_game p {
+  color: #fff;
+  text-align: left;
+  font-size: 2em;
+  line-height: 1.5;
+  text-indent: 1.2em;
+  margin-top: 50px;
+  padding: 0 70px;
+  font-family: 'Macondo', cursive;
+}
+/* line 242, ../sass/screen.scss */
+.specification_game .sreen_game {
+  width: 100%;
+  height: 550px;
+  margin-top: 50px;
+}
+/* line 246, ../sass/screen.scss */
+.specification_game .sreen_game p {
+  color: #ff9640;
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 4em;
+  font-family: 'Macondo', cursive;
+}
+/* line 253, ../sass/screen.scss */
+.specification_game .sreen_game figure {
+  width: 31.3%;
+  float: left;
+  height: 350px;
+  margin: 0 1%;
+  border: 3px solid #fff;
+}
+/* line 259, ../sass/screen.scss */
+.specification_game .sreen_game figure:hover {
+  border: 6px solid green;
+  transition: all 0.4s ease;
+}
+/* line 263, ../sass/screen.scss */
+.specification_game .sreen_game figure:not(:hover) {
+  border: 1px solid #fff;
+  transition: all 0.4s ease;
+}
+/* line 267, ../sass/screen.scss */
+.specification_game .sreen_game figure img {
+  width: 100%;
+  height: 100%;
+}
+/* line 273, ../sass/screen.scss */
+.specification_game footer {
+  width: 100%;
+  max-width: 1645px;
+  margin: 0 auto;
+  height: 70px;
+  padding: 0 70px;
+  background-color: #ff9640;
+  border: 3px solid #fff;
+  border-radius: 70px 70px 0px 0px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.8);
+  overflow-y: hidden;
+}
+/* line 284, ../sass/screen.scss */
+.specification_game footer .nyshka {
+  width: 10%;
+  height: 100%;
+  float: left;
+}
+/* line 288, ../sass/screen.scss */
+.specification_game footer .nyshka img {
+  width: 100px;
+  height: 70px;
+}
+/* line 293, ../sass/screen.scss */
+.specification_game footer .contact {
+  width: 90%;
+  height: 100%;
+  float: right;
+  padding: 15px 0 15px 50px;
+}
+/* line 298, ../sass/screen.scss */
+.specification_game footer .contact p {
+  font-family: 'Palanquin Dark', sans-serif;
+  font-size: 2em;
+  color: #fff;
+}
+/* line 302, ../sass/screen.scss */
+.specification_game footer .contact p b {
+  margin: 0 35px;
+}
+/* line 305, ../sass/screen.scss */
+.specification_game footer .contact p span {
+  color: #DE0052;
+}

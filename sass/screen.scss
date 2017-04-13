@@ -1,0 +1,311 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+*{
+	box-sizing: border-box;
+}
+html, body{	
+	max-width: 1920px;
+	width: 100%;
+	margin: 0 auto;
+	font-weight: 400;
+	font-size: 16px;
+
+	background-image: url('../img/back_fon.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+.fon_site{
+	width: 100%;
+	max-width: 1645px;
+	margin: 0 auto;
+	height: 925px;
+	background-image: url('../img/background_both_fon.jpg');
+	background-size: contain;
+	box-shadow: 0 0 100px rgba(0,0,0,0.8);
+	header{
+		width: 100%;
+		max-width: 1645px;
+		height: 70px;
+		background-color: #ff9640;
+		position: fixed;
+		z-index: 100;
+		border-radius: 0px 0px 70px 70px;
+		box-shadow: 0 0 100px rgba(0,0,0,0.8);
+		padding: 0 70px;
+		border: 3px solid #fff;
+		nav{
+			width: 40%;
+			height: inherit;
+			float: left;
+			ul{
+				padding: 15px 0;
+				li{
+					list-style: none;
+					float: left;
+					font-size: 2em;
+					margin-right: 30px;
+					font-family: 'Palanquin Dark', sans-serif;
+					font-weight: 500;
+					a{
+						display: block;
+						text-decoration: none;
+						color: #fff;
+						&:hover{
+							color: #DE0052;
+							transition: all 0.7s ease;
+						}
+						&:not(:hover){
+							color: #fff;
+							transition: all 1.2s ease;
+						}
+					}
+				}				
+			}
+		}
+		figure{
+			width: 25%;
+			height: inherit;
+			float: left;
+			text-align: center;
+			img{
+				width: auto;
+				height: 64px;				
+			}
+		}
+		aside{
+			width: 35%;
+			height: inherit;
+			float: right;
+			padding: 15px 0;
+			i{
+				float: right;
+				font-size: 2.2em;
+				margin-right: 40px;
+				color: #fff;
+				&:hover{
+					color: #DE0052;
+					transition: all 0.7s ease;
+					cursor: pointer;
+				}
+				&:not(:hover){
+					color: #fff;
+					transition: all 1.2s ease;
+				}
+			}
+		}
+	}
+	.content_for_game{
+		width: 78%;
+		height: 100%;
+		margin: 0 auto;
+		background-color: #fff;
+		figure{
+			width: 100%;
+			padding-top: 110px;
+			padding-bottom: 40px;
+			color: #ff9640;
+			font-size: 3.5em;			
+			font-family: 'Macondo', cursive;
+			text-align: center;
+			text-shadow: 1px 5px 5px black;
+		}
+		#map_game{
+			display: block;
+			margin: 0 auto;
+		}
+		#nomber_round, #player, #enemy, #health, #back_fon, #node_back_fon, #start, #for_start{
+			display: block;
+			margin: -650px auto 0px;
+		}
+	}
+}
+.specification_game{
+	width: 100%;
+	max-width: 1645px;
+	margin: 0 auto;
+	height: 1350px;
+	background-image: url('../img/about_game.jpg');
+	background-size: cover;
+	box-shadow: 0 0 100px rgba(0,0,0,0.8);
+	.block_spec{
+		position: relative;
+		background: #88b7d5;
+		border: 4px solid #c2e1f5;
+		font-family: 'Timmana', sans-serif;
+		font-weight: 500;
+		font-size: 2.5em;
+		text-align: center;
+		font-weight: 500;
+		letter-spacing: 10px;
+		padding: 20px 0 10px 0;
+		border-radius: 0 0 50px 50px;
+		&:after{
+			top: 100%;
+			left: 50%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+
+			border-color: rgba(136, 183, 213, 0);
+			border-top-color: #88b7d5;
+			border-width: 30px;
+			margin-left: -30px;
+		}
+		&:before{
+			top: 100%;
+			left: 50%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+
+			border-color: rgba(194, 225, 245, 0);
+			border-top-color: #c2e1f5;
+			border-width: 36px;
+			margin-left: -36px;
+		}
+	}
+	.keys{
+		width: 100%;
+		height: 315px;
+		.side_left{
+			width: 50%;
+			height: 100%;
+			float: left;
+			.block1{
+				width: 50%;
+				height: 100%;
+				float: left;
+				img{
+					margin: 50px;
+				}
+			}
+			.block2{
+				width: 50%;
+				height: 100%;
+				float: right;
+				padding-top: 50px;
+				text-align: right;
+				span{
+						padding-right: 100px;
+						color: #fff;
+						font-size: 3.5em;
+						margin-bottom: 50px;
+					}
+				p{
+					color: #fff;
+					text-align: left;
+					font-size: 2em;
+					line-height: 1.5;				
+				}
+			}
+		}
+		.side_right{
+			width: 50%;
+			height: 100%;
+			float: right;
+		}
+	}
+	.description_game{
+		width: 100%;
+		height: 300px;
+		text-align: right;
+		padding-top: 50px;
+		span{
+			padding-right: 160px;
+			color: #ff9640;
+			font-size: 3.5em;			
+			font-family: 'Macondo', cursive;
+		}
+		p{
+			color: #fff;
+			text-align: left;
+			font-size: 2em;
+			line-height: 1.5;
+			text-indent: 1.2em;
+			margin-top: 50px;
+			padding: 0 70px;
+			font-family: 'Macondo', cursive;
+		}
+	}
+	.sreen_game{
+		width: 100%;
+		height: 550px;
+		margin-top: 50px;
+		p{
+			color: #ff9640;
+			text-align: center;
+			margin-bottom: 50px;
+			font-size: 4em;
+			font-family: 'Macondo', cursive;
+		}
+		figure{
+			width: 31.3%;
+			float: left;
+			height: 350px;
+			margin: 0 1%;
+			border: 3px solid #fff;
+			&:hover{
+				border: 6px solid green;
+				transition: all 0.4s ease;
+			}
+			&:not(:hover){
+				border: 1px solid #fff;
+				transition: all 0.4s ease;
+			}
+			img{
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	footer{
+		width: 100%;
+		max-width: 1645px;
+		margin: 0 auto;
+		height: 70px;
+		padding: 0 70px;
+		background-color: #ff9640;
+		border: 3px solid #fff;
+		border-radius: 70px 70px 0px 0px;
+		box-shadow: 0 0 100px rgba(0,0,0,0.8);
+		overflow-y: hidden;
+		.nyshka{
+			width: 10%;
+			height: 100%;
+			float: left;
+			img{
+				width: 100px;
+				height: 70px;
+			}
+		}
+		.contact{
+			width: 90%;
+			height: 100%;
+			float: right;
+			padding: 15px 0 15px 50px;
+			p{
+				font-family: 'Palanquin Dark', sans-serif;
+				font-size: 2em;
+				color: #fff;
+				b{
+					margin: 0 35px;
+				}
+				span{
+					color: #DE0052;
+				}
+			}
+		}
+	}
+}
