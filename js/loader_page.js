@@ -1,8 +1,5 @@
-$(document).ready(function(){
-	NProgress.start();
-});
-
 $(window).on("load", function() {
+	NProgress.start();
 	setTimeout(function(){
 		NProgress.set(0.1);
 		$('.fon_site').removeClass('out').addClass('fade');
