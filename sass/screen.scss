@@ -8,6 +8,13 @@
 *{
 	box-sizing: border-box;
 }
+.out{
+	opacity: 0;
+}
+.fade{
+	transition: all 300ms linear;
+}
+
 html, body{	
 	max-width: 1920px;
 	width: 100%;

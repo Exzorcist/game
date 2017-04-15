@@ -4,16 +4,17 @@
 	<title>Dragon return at home</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/screen.css">
+	<link rel="stylesheet" type="text/css" href="libs/nprogress/nprogress.css">
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Timmana" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet">
 	<link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
-	<script type="text/javascript" src="js/game.js"></script>
+	<!--<script type="text/javascript" src="js/game.js"></script>-->
 </head>
 <body onload="startGame()">
-	<section class="fon_site">		
-		<header>
+	<section class="fon_site out">		
+		<header class="out">
 			<nav>
 				<ul id="menu">
 					<li><a href="">Home</a></li>
@@ -34,26 +35,26 @@
 				<i class="fa fa-rss" aria-hidden="true"></i>
 			</aside>
 		</header>
-		<section class="content_for_game">
-			<figure class="title_game">
+		<section class="content_for_game out">
+			<figure class="title_game out">
 				<p>"The dragon wants to return at home!"</p>
 			</figure>
-			<canvas id="map_game"></canvas>
-			<canvas id="nomber_round"></canvas>
-			<canvas id="player"></canvas>
-			<canvas id="enemy"></canvas>
-			<canvas id="health"></canvas>
-			<canvas id="back_fon"></canvas>
-			<canvas id="node_back_fon"></canvas>
-			<canvas id="start"></canvas>
-			<canvas id="for_start"></canvas>
+			<canvas id="map_game" class="out"></canvas>
+			<canvas id="nomber_round" class="out"></canvas>
+			<canvas id="player" class="out"></canvas>
+			<canvas id="enemy" class="out"></canvas>
+			<canvas id="health" class="out"></canvas>
+			<canvas id="back_fon" class="out"></canvas>
+			<canvas id="node_back_fon" class="out"></canvas>
+			<canvas id="start" class="out"></canvas>
+			<canvas id="for_start" class="out"></canvas>
 		</section>		
 	</section>
-	<section class="specification_game">
-		<figure class="block_spec">
+	<section class="specification_game out">
+		<figure class="block_spec out">
 			<p>Specification of GAME</p>
 		</figure>
-		<article class="keys">
+		<article class="keys out">
 			<figure class="side_left">
 				<div class="block1">
 					<img src="img/keys.png">
@@ -68,23 +69,23 @@
 			</figure>
 			<figure class="side_right"></figure>
 		</article>
-		<article class="description_game">
+		<article class="description_game out">
 			<span>Description GAME</span>
 			<p>For a long time, green dragons were the keepers of nature. They were kind, peace-loving beings that watched the order and harmony around. But during the great disaster the strongest hurricane scattered them throughout the earth. And now you have to help the young custodian to return home. Good luck!</p>
 		</article>
-		<article class="sreen_game">
+		<article class="sreen_game out">
 			<p>Some screen of GAME</p>
-			<figure class="screen1">
+			<figure class="screen1 out">
 				<img src="img/screen_1.jpg">
 			</figure>
-			<figure class="screen2">
+			<figure class="screen2 out">
 				<img src="img/screen_2.jpg">
 			</figure>
-			<figure class="screen3">
+			<figure class="screen3 out">
 				<img src="img/screen_3.jpg">
 			</figure>
 		</article>
-		<footer>
+		<footer class="out">
 			<div class="nyshka">
 				<img src="img/nyshka_footer.png">
 			</div>
@@ -93,6 +94,9 @@
 			</div>
 		</footer>
 	</section>
-	
+	<script type="text/javascript" src="libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="libs/nprogress/nprogress.js"></script>
+	<script type="text/javascript" src="js/loader_page.js"></script>
+	<script type="text/javascript" src="js/game.js"></script>
 </body>
 </html>
