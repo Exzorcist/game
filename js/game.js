@@ -12,6 +12,7 @@ var flag = false;	//for call updata
 var flagToDrawPlayer = 1;	//flag for player
 var countHP = 0;	//count health player
 var countBackFon = -1;	//count back fon
+var timeRound = 42000;	//time round
 /////////////////////////////////////////////////////////////////////////
 var canvasStart;	//valueble of menu game
 var ctxCanvasStart;	//valueble of drawing menu game
@@ -76,6 +77,8 @@ var argSounds = [snd1, snd2, snd3, snd4, snd5, snd6, snd7];
 var myPlayer = new Image();
 myPlayer.src = "img/sprite_player_and_enemies.png";
 
+var speedPlayer = 3;
+
 var argPlayerX = [0, 142, 287, 432];
 var argPlayerY = [49, 0, 49, 23];
 var argPlayerWidth = [142, 145, 144, 103];
@@ -93,8 +96,8 @@ var argEnemySpeed = [8, 10, 12, 14, 16, 18, 20];
 
 var enemies = [];	//array of enemies
 var spawnInterval;	//boolean function for creat
-var spawnTime = 5000;	//freak drawing
-var spawnAmount = -1;	//count enemy
+var spawnTime = 6300;	//freak drawing
+var spawnAmount = 1;	//count enemy
 /////////////////////////////////////////////////////////////////////////
 var health = new Image();
 health.src = "img/sprite_dragon_health.png";
@@ -104,7 +107,7 @@ var argHelathY = [0, 22, 45, 69, 92, 115];
 var argHealthWidth = [121, 121, 121, 121, 121, 121];
 var argHealthHeight = [22, 23, 24, 23, 23, 23];
 
-var totalHealth = 100;
+var totalHealth = 150;
 
 var dragonCry = new Audio("sound/dragon_cry.wav");
 /////////////////////////////////////////////////////////////////////////
@@ -215,6 +218,7 @@ function getMousePositionStart(e){
 function restartGameWin(){
 	clickButtom.play();
 	setTimeout(function(){
+		timeRound = 42000;
 		countRounds = 0;	//counter of rounds
 		countStagesL = 0;	//counter of stages
 		countStagesR = 1;	//counter of stages
@@ -224,19 +228,21 @@ function restartGameWin(){
 		countHP = 0;	//count health player
 		countBackFon = -1;	//count back fon
 		enemies = [];	//array of enemies
-		spawnAmount = -1;	//count enemy
-		totalHealth = 100;
+		spawnAmount = 1;	//count enemy
+		totalHealth = 150;
 		win.pause();
 		win.currentTime = 0.0;
 		clickButtom.pause();
 		clickButtom.currentTime = 0.0;
+		speedPlayer = 3;
 		document.removeEventListener("mousemove", getMousePositionWin, false);	// remove event mouse
 		init();
 	}, 1000);	
 }
 function restartGameLose(){
 	clickButtom.play();
-	setTimeout(function(){
+	setTimeout(function(){		
+		timeRound = 42000;
 		countRounds = 0;	//counter of rounds
 		countStagesL = 0;	//counter of stages
 		countStagesR = 1;	//counter of stages
@@ -246,12 +252,13 @@ function restartGameLose(){
 		countHP = 0;	//count health player
 		countBackFon = -1;	//count back fon
 		enemies = [];	//array of enemies
-		spawnAmount = -1;	//count enemy
-		totalHealth = 100;
+		spawnAmount = 1;	//count enemy
+		totalHealth = 150;
 		lose.pause();
 		lose.currentTime = 0.0;
 		clickButtom.pause();
 		clickButtom.currentTime = 0.0;
+		speedPlayer = 3;
 		document.removeEventListener("mousemove", getMousePositionLose, false);	// remove event mouse
 		init();
 	}, 1000);	
@@ -276,8 +283,6 @@ var requestAnimFrame = window.requestAnimationFrame ||
 /////////////////////////////////////////////////////////////////////////
 var startMenu = new Image();
 startMenu.src = "img/start_game.jpg";
-
-
 
 function startGame(){
 	//initialization valueble of map game
@@ -385,8 +390,6 @@ function init(){	//initialization all process in game
 	//----------------------------------------------
 	startLoop();
 
-	//clickButtom.pause();
-	//clickButtom.currentTime = 0.0;
 	document.removeEventListener("click", restartGameStart, false);
 	document.removeEventListener("click", restartGameLose, false);
 	document.removeEventListener("click", restartGameWin, false);
@@ -395,7 +398,7 @@ function init(){	//initialization all process in game
 	document.addEventListener("keydown", checkKeyDown, false);	//event key
 	document.addEventListener("keyup", checkKeyUp, false);	//event key
 
-	setTimeout(stoptLoop, 42000);	//42000
+	setTimeout(stoptLoop, timeRound);	//42000
 }
 /////////////////////////////////////////////////////////////////////////
 function updata(){	//update all date in my canvas
@@ -441,7 +444,9 @@ function nextStag(){	//insert new stage on the map
 		speed += 1;
 		flag = false;
 		mapX1 = 0;
-		mapX2 = gameWidth;		
+		mapX2 = gameWidth;
+		speedPlayer += 0.2;
+		stopCreatingEnemies();
 		init();
 	}
 	if(countRounds == 7){
@@ -456,7 +461,7 @@ function Player(){	//creat object player
 	this.drawY = gameHeight/2-argPlayerHeight[0];
 	this.width = argPlayerWidth[0];
 	this.height = argPlayerHeight[0];
-	this.speed = 3;
+	this.speed = speedPlayer;
 	//for keys
 	this.isUp = false;
 	this.isDown = false;
@@ -517,22 +522,23 @@ Player.prototype.updata = function(){
 	}
 	//reduce HP when player hit enemy
 	for(var i=0; i<enemies.length; i++){
-		if(this.drawX >= enemies[i].drawX &&
-			this.drawY >= enemies[i].drawY &&
-			this.drawX <= enemies[i].drawX + enemies[i].width &&
-			this.drawY <= enemies[i].drawY + enemies[i].height){
+
+		if(this.drawX+this.width >= enemies[i].drawX && this.drawX <= enemies[i].drawX+enemies[i].width &&
+			this.drawY <= enemies[i].drawY+enemies[i].height && this.drawY+this.height >= enemies[i].drawY){
+
 			totalHealth -= 1;
 			dragonCry.play();
-			if(totalHealth <= 100 && totalHealth >= 90){
+
+			if(totalHealth <= 150 && totalHealth >= 130){
 				countHP = 0;
 			}
-			if(totalHealth <= 89 && totalHealth >= 67){
+			if(totalHealth <= 129 && totalHealth >= 100){
 				countHP = 1;
 			}
-			if(totalHealth <= 66 && totalHealth >= 48){
+			if(totalHealth <= 99 && totalHealth >= 60){
 				countHP = 2;
 			}
-			if(totalHealth <= 47 && totalHealth >= 30){
+			if(totalHealth <= 69 && totalHealth >= 30){
 				countHP = 3;
 			}
 			if(totalHealth <= 29 && totalHealth >= 0){
@@ -610,7 +616,7 @@ function checkKeyUp(e){
 function Enemy(){	//creat object enemy
 	this.srcX = argEnemyX[countRounds];
 	this.srcY = argEnemyY[countRounds];
-	this.drawX = Math.floor(Math.random() * gameWidth/2) + gameWidth;
+	this.drawX = Math.floor(Math.random() * gameWidth*1.5) + gameWidth;
 	this.drawY = Math.floor(Math.random() * gameHeight);
 	this.width = argEnemyWidth[countRounds];
 	this.height = argEnemyHeight[countRounds];
@@ -619,6 +625,7 @@ function Enemy(){	//creat object enemy
 //metod's object enemy
 Enemy.prototype.draw = function(){
 	ctxCanvasEnemy.drawImage(myEnemy, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
+	
 }
 Enemy.prototype.updata = function(){
 	this.drawX -= this.speed;
@@ -631,7 +638,8 @@ Enemy.prototype.destroy = function(){
 }
 //draw COUNT enemy in canvas
 function spawnEnemy(count){
-	spawnAmount += 2;
+	spawnAmount += 3;
+	console.log(spawnAmount);
 	for(var i=0; i<count; i++){
 		enemies[i] = new Enemy();
 	}
@@ -651,6 +659,7 @@ function playerHealth(){	//return draw HP
 /////////////////////////////////////////////////////////////////////////
 function endRound(){
 	countBackFon += 1;
+	//stopCreatingEnemies();
 	if(countBackFon < 6){
 		ctxCanvasBackFon.clearRect(0, 0 , gameWidth, gameHeight);
 		ctxCanvasBackFon.drawImage(backFon, argBackFonX[countBackFon], argBackFonY[countBackFon], argBackFonWidth[countBackFon], argBackFonHeight[countBackFon], 0, 0, argBackFonWidth[countBackFon], argBackFonHeight[countBackFon]);
@@ -663,6 +672,7 @@ function endRound(){
 function drawNodeBackFon(){
 	ctxCanvasNodeBackFon.clearRect(0, 0 , gameWidth, gameHeight);
 	upRound.play();
+	stopCreatingEnemies();
 	setTimeout(function(){
 		ctxCanvasNodeBackFon.drawImage(nodeBackFon, argNodeBackFonX[0], argNodeBackFonY[0], argNodeBackFonWidth[0], argNodeBackFonHeight[0], gameWidth/2-argNodeBackFonWidth[0]/2, (gameHeight/2-argNodeBackFonHeight[0]/2)-100, argNodeBackFonWidth[0], argNodeBackFonHeight[0]);
 	}, 500);
@@ -733,7 +743,7 @@ function stoptLoop(){	//end game
 	isPlaying = false;
 	argSounds[countRounds].pause();
 	argSounds[countRounds].currentTime = 0.0;
-	spawnAmount = -1;
+	spawnAmount = 1;
 	enemies = [];
 
 	setTimeout(function(){
