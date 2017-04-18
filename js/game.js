@@ -1,7 +1,3 @@
-//window.onload = init;
-//window.onload = startGame;
-
-//document.onload = startGame;
 //My value for a game
 var isPlaying;	//valueble game start/end (boolean)
 var countRounds = 0;	//counter of rounds
@@ -12,7 +8,6 @@ var flag = false;	//for call updata
 var flagToDrawPlayer = 1;	//flag for player
 var countHP = 0;	//count health player
 var countBackFon = -1;	//count back fon
-var timeRound = 42000;	//time round
 /////////////////////////////////////////////////////////////////////////
 var canvasStart;	//valueble of menu game
 var ctxCanvasStart;	//valueble of drawing menu game
@@ -54,7 +49,6 @@ var mapX2 = gameWidth;	// --//-- motion stage right
 var stagesSprite = new Image();
 stagesSprite.src = "img/sprite_stages.png";
 
-var arrMapSpriteX = [0, 1200, 0, 1200, 0, 1200, 0, 1200, 0, 1200, 0, 1200, 0, 1200,];
 var arrMapSpriteY = [0, 0, 650, 650, 1300, 1300, 1950, 1950, 2600, 2600, 3250, 3250, 3900, 3900];
 /////////////////////////////////////////////////////////////////////////
 //My round, all 7, use sprite
@@ -89,7 +83,6 @@ var myEnemy = new Image();
 myEnemy.src = "img/sprite_player_and_enemies.png";
 
 var argEnemyX = [0, 62.5, 156, 243, 295, 380, 500];
-var argEnemyY = [135, 135, 135, 135, 135, 135, 135];
 var argEnemyWidth = [62.5, 93, 86, 54, 84, 120, 127];
 var argEnemyHeight = [42, 90, 58, 39, 47, 76, 66];
 var argEnemySpeed = [8, 10, 12, 14, 16, 18, 20];
@@ -102,10 +95,7 @@ var spawnAmount = 1;	//count enemy
 var health = new Image();
 health.src = "img/sprite_dragon_health.png";
 
-var argHealthX = [0, 0, 0, 0, 0, 0];
 var argHelathY = [0, 22, 45, 69, 92, 115];
-var argHealthWidth = [121, 121, 121, 121, 121, 121];
-var argHealthHeight = [22, 23, 24, 23, 23, 23];
 
 var totalHealth = 150;
 
@@ -114,10 +104,7 @@ var dragonCry = new Audio("sound/dragon_cry.wav");
 var backFon = new Image();
 backFon.src = "img/sprite_back_fon.png";
 
-var argBackFonX = [0, 0, 0, 0, 0, 0, 0, 0];
 var argBackFonY = [0, 650, 1320, 1974, 2622, 3273, 3923, 4573];
-var argBackFonWidth = [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200];
-var argBackFonHeight = [650, 650, 650, 650, 650, 650, 650, 650];
 /////////////////////////////////////////////////////////////////////////
 var nodeBackFon = new Image();
 nodeBackFon.src = "img/sprite_node_back_fon.png";
@@ -142,7 +129,7 @@ var clickButtom = new  Audio("sound/click.wav");
 var argButtomX = [7, 7, 7, 305, 305, 305, 612, 612, 612];
 var argButtomY = [6.5, 66.5, 128, 6.5, 66.5, 128, 6.5, 66.5, 128];
 var argButtomWidth = [271.5, 271.5, 271.5, 274, 274, 274, 273, 273, 273];
-var argButtomHeight = [49, 49, 49, 49, 49, 49, 49, 49, 49];
+var argButtomHeight = 49;
 
 var mouseX;
 var mouseY;
@@ -151,64 +138,69 @@ function getMousePositionWin(e){
   	mouseX = e.offsetX;
 	mouseY = e.offsetY;
 	if(mouseX >= 0 && mouseX <= gameWidth && mouseY >= 0 && mouseY <= 650){
-		ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[3], argButtomY[3], argButtomWidth[3], argButtomHeight[3], gameWidth/2-argButtomWidth[3]/2, gameHeight-argButtomHeight[3]-50, argButtomWidth[3], argButtomHeight[3]);
+		ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[3], argButtomY[3], argButtomWidth[3], argButtomHeight, gameWidth/2-argButtomWidth[3]/2, gameHeight-argButtomHeight-50, argButtomWidth[3], argButtomHeight);
 		if(mouseX >= gameWidth/2-argButtomWidth[3]/2 &&
 			mouseX <= gameWidth/2-argButtomWidth[3]/2+argButtomWidth[3] &&
-			mouseY >= gameHeight-argButtomHeight[3]-50 &&
-			mouseY <= gameHeight-argButtomHeight[3]-50+argButtomHeight[3]){
-			ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[3]/2, gameHeight-argButtomHeight[3]-50 , argButtomWidth[4], argButtomHeight[4]);
-			ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[4], argButtomY[4], argButtomWidth[4], argButtomHeight[4], gameWidth/2-argButtomWidth[4]/2, gameHeight-argButtomHeight[4]-50, argButtomWidth[4], argButtomHeight[4]);
+			mouseY >= gameHeight-argButtomHeight-50 &&
+			mouseY <= gameHeight-argButtomHeight-50+argButtomHeight){
+			//----------------------------------------------
+			ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[3]/2, gameHeight-argButtomHeight-50 , argButtomWidth[4], argButtomHeight);
+			ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[4], argButtomY[4], argButtomWidth[4], argButtomHeight, gameWidth/2-argButtomWidth[4]/2, gameHeight-argButtomHeight-50, argButtomWidth[4], argButtomHeight);
 			document.addEventListener("click", restartGameWin, false);	//event mouse
 			hoverButtom.play();
 		}else{
-			ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[4]/2, gameHeight-argButtomHeight[4]-50 , argButtomWidth[3], argButtomHeight[3]);
-			ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[3], argButtomY[3], argButtomWidth[3], argButtomHeight[3], gameWidth/2-argButtomWidth[3]/2, gameHeight-argButtomHeight[3]-50, argButtomWidth[3], argButtomHeight[3]);
+			ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[4]/2, gameHeight-argButtomHeight-50 , argButtomWidth[3], argButtomHeight);
+			ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[3], argButtomY[3], argButtomWidth[3], argButtomHeight, gameWidth/2-argButtomWidth[3]/2, gameHeight-argButtomHeight-50, argButtomWidth[3], argButtomHeight);
 			hoverButtom.pause();
 			hoverButtom.currentTime = 0.0;
 		}	
 	}else{
-		ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[4]/2, gameHeight-argButtomHeight[4]-50 , argButtomWidth[3], argButtomHeight[3]);
+		ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[4]/2, gameHeight-argButtomHeight-50 , argButtomWidth[3], argButtomHeight);
 	}
 }
 function getMousePositionLose(e){
   	mouseX = e.offsetX;
 	mouseY = e.offsetY;
+	
 	if(mouseX >= 0 && mouseX <= gameWidth && mouseY >= 0 && mouseY <= 650){
-		ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[0], argButtomY[0], argButtomWidth[0], argButtomHeight[0], gameWidth/2-argButtomWidth[0]/2, gameHeight-argButtomHeight[0]-50, argButtomWidth[0], argButtomHeight[0]);
+		ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[0], argButtomY[0], argButtomWidth[0], argButtomHeight, gameWidth/2-argButtomWidth[0]/2, gameHeight-argButtomHeight-50, argButtomWidth[0], argButtomHeight);
 		if(mouseX >= gameWidth/2-argButtomWidth[0]/2 &&
 			mouseX <= gameWidth/2-argButtomWidth[0]/2+argButtomWidth[0] &&
-			mouseY >= gameHeight-argButtomHeight[0]-50 &&
-			mouseY <= gameHeight-argButtomHeight[0]-50+argButtomHeight[0]){
-			ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[0]/2, gameHeight-argButtomHeight[0]-50 , argButtomWidth[1], argButtomHeight[1]);
-			ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[1], argButtomY[1], argButtomWidth[1], argButtomHeight[1], gameWidth/2-argButtomWidth[1]/2, gameHeight-argButtomHeight[1]-50, argButtomWidth[1], argButtomHeight[1]);
+			mouseY >= gameHeight-argButtomHeight-50 &&
+			mouseY <= gameHeight-argButtomHeight-50+argButtomHeight){
+			//----------------------------------------------
+			ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[0]/2, gameHeight-argButtomHeight-50 , argButtomWidth[1], argButtomHeight);
+			ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[1], argButtomY[1], argButtomWidth[1], argButtomHeight, gameWidth/2-argButtomWidth[1]/2, gameHeight-argButtomHeight-50, argButtomWidth[1], argButtomHeight);
+			
 			document.addEventListener("click", restartGameLose, false);	//event mouse
 			hoverButtom.play();
 		}else{
-			ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[1]/2, gameHeight-argButtomHeight[1]-50 , argButtomWidth[0], argButtomHeight[0]);
-			ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[0], argButtomY[0], argButtomWidth[0], argButtomHeight[0], gameWidth/2-argButtomWidth[0]/2, gameHeight-argButtomHeight[0]-50, argButtomWidth[0], argButtomHeight[0]);
+			ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[1]/2, gameHeight-argButtomHeight-50 , argButtomWidth[0], argButtomHeight);
+			ctxCanvasNodeBackFon.drawImage(buttom, argButtomX[0], argButtomY[0], argButtomWidth[0], argButtomHeight, gameWidth/2-argButtomWidth[0]/2, gameHeight-argButtomHeight-50, argButtomWidth[0], argButtomHeight);
 			hoverButtom.pause();
 			hoverButtom.currentTime = 0.0;
 		}	
-	}else{
-		ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[1]/2, gameHeight-argButtomHeight[1]-50 , argButtomWidth[0], argButtomHeight[0]);
-	}
+	}/*else{
+		ctxCanvasNodeBackFon.clearRect(gameWidth/2-argButtomWidth[1]/2, gameHeight-argButtomHeight-50 , argButtomWidth[0], argButtomHeight);
+	}*/
 }
 function getMousePositionStart(e){
   	mouseX = e.offsetX;
 	mouseY = e.offsetY;
 	if(mouseX >= 0 && mouseX <= gameWidth && mouseY >= 0 && mouseY <= 650){
-		ctxCanvsForStart.drawImage(buttom, argButtomX[6], argButtomY[6], argButtomWidth[6], argButtomHeight[6], gameWidth/2-argButtomWidth[6]/2, gameHeight-argButtomHeight[6]-50, argButtomWidth[6], argButtomHeight[6]);
+		ctxCanvsForStart.drawImage(buttom, argButtomX[6], argButtomY[6], argButtomWidth[6], argButtomHeight, gameWidth/2-argButtomWidth[6]/2, gameHeight-argButtomHeight-50, argButtomWidth[6], argButtomHeight);
 		if(mouseX >= gameWidth/2-argButtomWidth[6]/2 &&
 			mouseX <= gameWidth/2-argButtomWidth[6]/2+argButtomWidth[6] &&
-			mouseY >= gameHeight-argButtomHeight[6]-50 &&
-			mouseY <= gameHeight-argButtomHeight[6]-50+argButtomHeight[6]){
-			ctxCanvsForStart.clearRect(gameWidth/2-argButtomWidth[6]/2, gameHeight-argButtomHeight[6]-50 , argButtomWidth[7], argButtomHeight[7]);
-			ctxCanvsForStart.drawImage(buttom, argButtomX[7], argButtomY[7], argButtomWidth[7], argButtomHeight[7], gameWidth/2-argButtomWidth[7]/2, gameHeight-argButtomHeight[7]-50, argButtomWidth[7], argButtomHeight[7]);
+			mouseY >= gameHeight-argButtomHeight-50 &&
+			mouseY <= gameHeight-argButtomHeight-50+argButtomHeight){
+			//----------------------------------------------
+			ctxCanvsForStart.clearRect(gameWidth/2-argButtomWidth[6]/2, gameHeight-argButtomHeight-50 , argButtomWidth[7], argButtomHeight);
+			ctxCanvsForStart.drawImage(buttom, argButtomX[7], argButtomY[7], argButtomWidth[7], argButtomHeight, gameWidth/2-argButtomWidth[7]/2, gameHeight-argButtomHeight-50, argButtomWidth[7], argButtomHeight);
 			document.addEventListener("click", restartGameStart, false);	//event mouse
 			hoverButtom.play();
 		}else{
-			ctxCanvsForStart.clearRect(gameWidth/2-argButtomWidth[7]/2, gameHeight-argButtomHeight[7]-50 , argButtomWidth[6], argButtomHeight[6]);
-			ctxCanvsForStart.drawImage(buttom, argButtomX[6], argButtomY[6], argButtomWidth[6], argButtomHeight[6], gameWidth/2-argButtomWidth[6]/2, gameHeight-argButtomHeight[6]-50, argButtomWidth[6], argButtomHeight[6]);
+			ctxCanvsForStart.clearRect(gameWidth/2-argButtomWidth[7]/2, gameHeight-argButtomHeight-50 , argButtomWidth[6], argButtomHeight);
+			ctxCanvsForStart.drawImage(buttom, argButtomX[6], argButtomY[6], argButtomWidth[6], argButtomHeight, gameWidth/2-argButtomWidth[6]/2, gameHeight-argButtomHeight-50, argButtomWidth[6], argButtomHeight);
 			hoverButtom.pause();
 			hoverButtom.currentTime = 0.0;
 		}	
@@ -218,23 +210,7 @@ function getMousePositionStart(e){
 function restartGameWin(){
 	clickButtom.play();
 	setTimeout(function(){
-		timeRound = 42000;
-		countRounds = 0;	//counter of rounds
-		countStagesL = 0;	//counter of stages
-		countStagesR = 1;	//counter of stages
-		speed = 4;	//speed round
-		flag = false;	//for call updata
-		flagToDrawPlayer = 1;	//flag for player
-		countHP = 0;	//count health player
-		countBackFon = -1;	//count back fon
-		enemies = [];	//array of enemies
-		spawnAmount = 1;	//count enemy
-		totalHealth = 150;
-		win.pause();
-		win.currentTime = 0.0;
-		clickButtom.pause();
-		clickButtom.currentTime = 0.0;
-		speedPlayer = 3;
+		zeroOutData();
 		document.removeEventListener("mousemove", getMousePositionWin, false);	// remove event mouse
 		init();
 	}, 1000);	
@@ -242,36 +218,215 @@ function restartGameWin(){
 function restartGameLose(){
 	clickButtom.play();
 	setTimeout(function(){		
-		timeRound = 42000;
-		countRounds = 0;	//counter of rounds
-		countStagesL = 0;	//counter of stages
-		countStagesR = 1;	//counter of stages
-		speed = 4;	//speed round
-		flag = false;	//for call updata
-		flagToDrawPlayer = 1;	//flag for player
-		countHP = 0;	//count health player
-		countBackFon = -1;	//count back fon
-		enemies = [];	//array of enemies
-		spawnAmount = 1;	//count enemy
-		totalHealth = 150;
-		lose.pause();
-		lose.currentTime = 0.0;
-		clickButtom.pause();
-		clickButtom.currentTime = 0.0;
-		speedPlayer = 3;
+		zeroOutData();
 		document.removeEventListener("mousemove", getMousePositionLose, false);	// remove event mouse
 		init();
 	}, 1000);	
 }
 function restartGameStart(){
 	clickButtom.play();
-	setTimeout(function(){
-		
+	setTimeout(function(){		
 		ctxCanvasStart.clearRect(0, 0, gameWidth, gameHeight);
 		ctxCanvsForStart.clearRect(0, 0, gameWidth, gameHeight);
 		document.removeEventListener("mousemove", getMousePositionStart, false);	// remove event mouse
 		init();
 	}, 1000);	
+}
+function zeroOutData(){
+	countRounds = 0;	//counter of rounds
+	countStagesL = 0;	//counter of stages
+	countStagesR = 1;	//counter of stages
+	speed = 4;	//speed round
+	flag = false;	//for call updata
+	flagToDrawPlayer = 1;	//flag for player
+	countHP = 0;	//count health player
+	countBackFon = -1;	//count back fon
+	enemies = [];	//array of enemies
+	spawnAmount = 1;	//count enemy
+	totalHealth = 150;
+	lose.pause();
+	lose.currentTime = 0.0;
+	clickButtom.pause();
+	clickButtom.currentTime = 0.0;
+}
+/////////////////////////////////////////////////////////////////////////
+var imgCountRes = new Image();
+imgCountRes.src = "img/sprite_back_count.png";
+
+var imgError = new Image();
+imgError.src = "img/error_round.png";
+
+var argImgCountResX = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+var argImgCountResY = [0, 70, 140, 210];
+
+function countForGame(){
+	ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+	ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[0], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	//----------------------------------------------
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[1], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 1000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[2], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 2000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[3], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 3000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[4], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 4000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[5], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 5000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[6], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 6000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[7], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 7000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[8], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 8000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[9], argImgCountResY[0], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 9000);
+	//----------------------------------------------
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[0], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 10000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[1], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 11000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[2], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 12000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[3], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 13000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[4], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 14000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[5], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 15000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[6], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 16000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[7], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 17000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[8], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 18000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[9], argImgCountResY[1], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 19000);
+	//----------------------------------------------
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[0], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 20000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[1], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 21000)
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[2], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 22000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[3], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 23000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[4], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 24000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[5], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 25000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[6], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 26000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[7], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 27000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[8], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 28000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[9], argImgCountResY[2], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 29000);
+	//----------------------------------------------
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[0], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 30000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[1], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 31000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[2], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 32000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[3], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 33000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[4], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 34000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[5], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 35000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[6], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 36000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[7], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 37000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[8], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 38000);
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		ctxCanvasNodeBackFon.drawImage(imgCountRes, argImgCountResX[9], argImgCountResY[3], 100, 70, gameWidth-100, 0, 100, 70);
+	}, 39000);
+	//----------------------------------------------
+	setTimeout(function(){
+		ctxCanvasNodeBackFon.clearRect(gameWidth-100, 0, 100, 70);
+		document.addEventListener("mousemove", getMousePositionLose, false);	//event mouse
+	}, 40000);
 }
 /////////////////////////////////////////////////////////////////////////
 //valuable for animation anywhere
@@ -285,6 +440,12 @@ var startMenu = new Image();
 startMenu.src = "img/start_game.jpg";
 
 function startGame(){
+	initCanvas();
+	ctxCanvasStart.drawImage(startMenu, 0, 0, gameWidth, gameHeight, 0, 0, gameWidth, gameHeight);
+	document.addEventListener("mousemove", getMousePositionStart, false);	//event mouse
+}
+/////////////////////////////////////////////////////////////////////////
+function initCanvas(){
 	//initialization valueble of map game
 	map = document.getElementById("map_game");
 	ctxMap = map.getContext("2d");
@@ -339,55 +500,10 @@ function startGame(){
 	canvasForStart.width = gameWidth;
 	canvasForStart.height = gameHeight;
 	//----------------------------------------------
-
-	ctxCanvasStart.drawImage(startMenu, 0, 0, gameWidth, gameHeight, 0, 0, gameWidth, gameHeight);
-
-	document.addEventListener("mousemove", getMousePositionStart, false);	//event mouse
 }
 /////////////////////////////////////////////////////////////////////////
-function init(){	//initialization all process in game
-	//initialization valueble of map game
-	map = document.getElementById("map_game");
-	ctxMap = map.getContext("2d");
-	map.width = gameWidth;
-	map.height = gameHeight;
-	//----------------------------------------------
-	//initialization valueble of round game
-	mapRound = document.getElementById("nomber_round");
-	ctxMapRound = mapRound.getContext("2d");
-	mapRound.width = gameWidth;
-	mapRound.height = gameHeight;
-	//----------------------------------------------
-	//initialization valueble of my player
-	canvasPlayer = document.getElementById("player");
-	ctxCanvasPlayer = canvasPlayer.getContext("2d");
-	canvasPlayer.width = gameWidth;
-	canvasPlayer.height = gameHeight;
-	//----------------------------------------------
-	//initialization valueble of enemies
-	canvasEnemy = document.getElementById("enemy");
-	ctxCanvasEnemy = canvasEnemy.getContext("2d");
-	canvasEnemy.width = gameWidth;
-	canvasEnemy.height = gameHeight;
-	//----------------------------------------------
-	//initialization valueble of health
-	canvasHealth = document.getElementById("health");
-	ctxCanvasHealth = canvasHealth.getContext("2d");
-	canvasHealth.width = gameWidth;
-	canvasHealth.height = gameHeight;
-	//----------------------------------------------
-	//initialization valueble of back fon
-	canvasBackFon = document.getElementById("back_fon");
-	ctxCanvasBackFon = canvasBackFon.getContext("2d");
-	canvasBackFon.width = gameWidth;
-	canvasBackFon.height = gameHeight;
-	//----------------------------------------------
-	//initialization valueble of node back fon
-	canvasNodeBackFon = document.getElementById("node_back_fon");
-	ctxCanvasNodeBackFon = canvasNodeBackFon.getContext("2d");
-	canvasNodeBackFon.width = gameWidth;
-	canvasNodeBackFon.height = gameHeight;
-	//----------------------------------------------
+function init(){	//initialization all process in game	
+	initCanvas();
 	startLoop();
 
 	document.removeEventListener("click", restartGameStart, false);
@@ -398,7 +514,8 @@ function init(){	//initialization all process in game
 	document.addEventListener("keydown", checkKeyDown, false);	//event key
 	document.addEventListener("keyup", checkKeyUp, false);	//event key
 
-	setTimeout(stoptLoop, timeRound);	//42000
+	setTimeout(countForGame, 2500);
+	setTimeout(stoptLoop, 42000);	//42000
 }
 /////////////////////////////////////////////////////////////////////////
 function updata(){	//update all date in my canvas
@@ -414,7 +531,7 @@ function updata(){	//update all date in my canvas
 /////////////////////////////////////////////////////////////////////////
 function nextRound(){	//insert node round
 	drawBg();
-	setTimeout(function(){flag = true}, 2000);	
+	setTimeout(function(){flag = true;}, 2000);	
 	//----------------------------------------------
 	ctxMapRound.clearRect(0, 0 , gameWidth, gameHeight);
 	ctxMapRound.drawImage(roundSprite, argRoundSpriteX[countRounds], argRoundSpriteY[countRounds], nodeRoundWidth, nodeRoundHeight, 400, 235, nodeRoundWidth, nodeRoundHeight);
@@ -422,8 +539,8 @@ function nextRound(){	//insert node round
 /////////////////////////////////////////////////////////////////////////
 function drawBg(){	//drawing my stages
 	ctxMap.clearRect(0, 0 , gameWidth, gameHeight);
-	ctxMap.drawImage(stagesSprite, arrMapSpriteX[countStagesL], arrMapSpriteY[countStagesL], gameWidth, gameHeight, mapX1, 0, gameWidth, gameHeight);
-	ctxMap.drawImage(stagesSprite, arrMapSpriteX[countStagesR], arrMapSpriteY[countStagesR], gameWidth, gameHeight, mapX2, 0, gameWidth, gameHeight);
+	ctxMap.drawImage(stagesSprite, 0, arrMapSpriteY[countStagesL], gameWidth, gameHeight, mapX1, 0, gameWidth, gameHeight);
+	ctxMap.drawImage(stagesSprite, 1200, arrMapSpriteY[countStagesR], gameWidth, gameHeight, mapX2, 0, gameWidth, gameHeight);
 }
 function moveBG(){	//function for moving my stages
 	mapX1 -= speed;
@@ -437,7 +554,7 @@ function moveBG(){	//function for moving my stages
 }
 /////////////////////////////////////////////////////////////////////////
 function nextStag(){	//insert new stage on the map
-	if(countRounds < 7){
+	if(countRounds < 7){		
 		countRounds += 1;
 		countStagesL += 2;
 		countStagesR += 2;
@@ -446,7 +563,6 @@ function nextStag(){	//insert new stage on the map
 		mapX1 = 0;
 		mapX2 = gameWidth;
 		speedPlayer += 0.2;
-		stopCreatingEnemies();
 		init();
 	}
 	if(countRounds == 7){
@@ -545,8 +661,16 @@ Player.prototype.updata = function(){
 				countHP = 4;
 			}
 			if(totalHealth <= 0){
-				countHP = 5;
-				stoptLoop();
+				countHP = 5;	
+				ctxCanvasNodeBackFon.clearRect(gameWidth/2-225, 0, 100, 70);
+				ctxCanvasNodeBackFon.drawImage(imgError, 0, 0, 450, 58, gameWidth/2-225, 0, 450, 58);
+				/*setInterval(function(){
+					ctxCanvasNodeBackFon.clearRect(gameWidth/2-225, 0, 100, 70);
+					setInterval(function(){
+						ctxCanvasNodeBackFon.drawImage(imgError, 0, 0, 450, 58, gameWidth/2-225, 0, 450, 58);
+					}, 500);
+				}, 1000);*/
+				
 			}
 		}
 	}
@@ -615,7 +739,7 @@ function checkKeyUp(e){
 /////////////////////////////////////////////////////////////////////////
 function Enemy(){	//creat object enemy
 	this.srcX = argEnemyX[countRounds];
-	this.srcY = argEnemyY[countRounds];
+	this.srcY = 135;
 	this.drawX = Math.floor(Math.random() * gameWidth*1.5) + gameWidth;
 	this.drawY = Math.floor(Math.random() * gameHeight);
 	this.width = argEnemyWidth[countRounds];
@@ -624,8 +748,7 @@ function Enemy(){	//creat object enemy
 }
 //metod's object enemy
 Enemy.prototype.draw = function(){
-	ctxCanvasEnemy.drawImage(myEnemy, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);
-	
+	ctxCanvasEnemy.drawImage(myEnemy, this.srcX, this.srcY, this.width, this.height, this.drawX, this.drawY, this.width, this.height);	
 }
 Enemy.prototype.updata = function(){
 	this.drawX -= this.speed;
@@ -639,7 +762,6 @@ Enemy.prototype.destroy = function(){
 //draw COUNT enemy in canvas
 function spawnEnemy(count){
 	spawnAmount += 3;
-	console.log(spawnAmount);
 	for(var i=0; i<count; i++){
 		enemies[i] = new Enemy();
 	}
@@ -654,15 +776,14 @@ function stopCreatingEnemies(){
 /////////////////////////////////////////////////////////////////////////
 function playerHealth(){	//return draw HP
 	ctxCanvasHealth.clearRect(0, 0 , gameWidth, gameHeight);
-	ctxCanvasHealth.drawImage(health, argHealthX[countHP], argHelathY[countHP], argHealthWidth[countHP], argHealthHeight[countHP], 20, 20, argHealthWidth[countHP], argHealthHeight[countHP]);
+	ctxCanvasHealth.drawImage(health, 0, argHelathY[countHP], 121, 24, 20, 20, 121, 24);
 }
 /////////////////////////////////////////////////////////////////////////
 function endRound(){
 	countBackFon += 1;
-	//stopCreatingEnemies();
 	if(countBackFon < 6){
 		ctxCanvasBackFon.clearRect(0, 0 , gameWidth, gameHeight);
-		ctxCanvasBackFon.drawImage(backFon, argBackFonX[countBackFon], argBackFonY[countBackFon], argBackFonWidth[countBackFon], argBackFonHeight[countBackFon], 0, 0, argBackFonWidth[countBackFon], argBackFonHeight[countBackFon]);
+		ctxCanvasBackFon.drawImage(backFon, 0, argBackFonY[countBackFon], 1200, 650, 0, 0, 1200, 650);
 		drawNodeBackFon();
 	}else if(countBackFon == 6){
 		stoptLoop();
@@ -718,7 +839,7 @@ function drawNodeBackFon(){
 	setTimeout(function(){
 		ctxCanvasNodeBackFon.clearRect(0, 0 , gameWidth, gameHeight);
 		nextStag();
-	}, 7000);	//7000
+	}, 7000);
 }
 /////////////////////////////////////////////////////////////////////////
 function loop(){	//game in processed
@@ -745,26 +866,25 @@ function stoptLoop(){	//end game
 	argSounds[countRounds].currentTime = 0.0;
 	spawnAmount = 1;
 	enemies = [];
-
+	//ctxCanvasNodeBackFon.clearRect(gameWidth/2-225, 0, 100, 70);
 	setTimeout(function(){
-		if(countBackFon != 6 && countHP == 5){
+		if(countBackFon <= 5 && countHP == 5){
 			argSounds[countRounds].pause();
 			argSounds[countRounds].currentTime = 0.0;
 			lose.play();
-			ctxCanvasBackFon.clearRect(0, 0 , gameWidth, gameHeight);
-			ctxCanvasBackFon.drawImage(backFon, argBackFonX[7], argBackFonY[7], argBackFonWidth[7], argBackFonHeight[7], 0, 0, argBackFonWidth[7], argBackFonHeight[7]);
+			ctxCanvasBackFon.clearRect(0, 0 , gameWidth, gameHeight);			
+			ctxCanvasNodeBackFon.clearRect(0, 0 , gameWidth, gameHeight);
+			ctxCanvasBackFon.drawImage(backFon, 0, argBackFonY[7], 1200, 650, 0, 0, 1200, 650);
 			ctxCanvasNodeBackFon.drawImage(nodeBackFon, argNodeBackFonX[7], argNodeBackFonY[7], argNodeBackFonWidth[7], argNodeBackFonHeight[7], gameWidth/2-argNodeBackFonWidth[7]/2, gameHeight/2-argNodeBackFonHeight[7]/2, argNodeBackFonWidth[7], argNodeBackFonHeight[7]);
-
 			document.addEventListener("mousemove", getMousePositionLose, false);	//event mouse
 		}else if(countBackFon == 6 && countHP < 5){
 			argSounds[countRounds].pause();
 			argSounds[countRounds].currentTime = 0.0;
 			win.play();
 			ctxCanvasBackFon.clearRect(0, 0 , gameWidth, gameHeight);
-			ctxCanvasBackFon.drawImage(backFon, argBackFonX[6], argBackFonY[6], argBackFonWidth[6], argBackFonHeight[6], 0, 0, argBackFonWidth[6], argBackFonHeight[6]);
+			ctxCanvasBackFon.drawImage(backFon, 0, argBackFonY[6], 1200, 650, 0, 0, 1200, 650);
 			ctxCanvasNodeBackFon.drawImage(nodeBackFon, argNodeBackFonX[8], argNodeBackFonY[8], argNodeBackFonWidth[8], argNodeBackFonHeight[8], gameWidth/2-argNodeBackFonWidth[8]/2, (gameHeight/2-argNodeBackFonHeight[8]/2)-50, argNodeBackFonWidth[8], argNodeBackFonHeight[8]);
 			ctxCanvasNodeBackFon.drawImage(nodeBackFon, argNodeBackFonX[10], argNodeBackFonY[10], argNodeBackFonWidth[10], argNodeBackFonHeight[10], gameWidth/2-argNodeBackFonWidth[10]/2, (gameHeight/2-argNodeBackFonHeight[10]/2)+50, argNodeBackFonWidth[10], argNodeBackFonHeight[10]);
-
 			document.addEventListener("mousemove", getMousePositionWin, false);	//event mouse
 		}else{
 			endRound();
